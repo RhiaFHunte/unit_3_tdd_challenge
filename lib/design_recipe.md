@@ -4,7 +4,9 @@ Copy this into a `recipe.md` in your project and fill it out.
 
 ## 1. Describe the Problem
 
-_Put or write the user story here. Add any clarifying notes you might have._
+As a user
+So that I can find my tasks among all my notes
+I want to check if a line from my notes includes the string `#TODO`.
 
 ## 2. Design the Function Signature
 
@@ -13,14 +15,14 @@ _Include the name of the function, its parameters, return value, and side effect
 ```python
 # EXAMPLE
 
-def extract_uppercase(mixed_words):
-    """Extracts uppercase words from a string
+def check_for_todo(str):
+    """check if a line from my notes includes the string `#TODO`.
 
     Parameters: (list all parameters and their types)
-        mixed_words: a string containing words (e.g. "hello WORLD")
+        str: a string containing words (e.g. `#TODO`)
 
-    Returns: (state the return value and its type)
-        a list of strings, each one a word (e.g. ["WORLD"])
+    Returns: ()
+        Boolean: True/False
 
     Side effects: (state any side effects)
         This function doesn't print anything or have any other side-effects
@@ -36,47 +38,37 @@ _Make a list of examples of what the function will take and return._
 # EXAMPLE
 
 """
-Given a lower and an uppercase word
-It returns a list with the uppercase word
+Given a string contains `#TODO`
+It returns True
 """
-extract_uppercase("hello WORLD") => ["WORLD"]
+test_check_string_includes_todo():
+    result = check_for_todo("#TODO buy milk and eggs")
+    assert result == True
 
 """
-Given two uppercase words
-It returns a list with both words
+Given a string does NOT contains `#TODO`
+It returns False
 """
-extract_uppercase("HELLO WORLD") => ["HELLO", "WORLD"]
+test_check_string_does_not_include_todo():
+    result = check_for_todo("buy milk and eggs")
+    assert result == False
 
 """
-Given two lowercase words
-It returns an empty list
+Given a string is empty
+It returns an error message 
 """
-extract_uppercase("hello world") => []
+test_check_string_is_empty():
+    result = check_for_todo("")
+    assert result == "String cant be empty!"
 
 """
-Given a lower and a mixed case word
-It returns an empty list
+Given not a string
+It returns an error message 
 """
-extract_uppercase("hello WoRLD") => []
+test_check_not_a_string():
+    result = check_for_todo(53543)
+    assert result == "Value must be a string!"
 
-"""
-Given a lowercase word and an uppercase word with an exclamation mark
-It returns a list with the uppercase word, no exclamation mark
-"""
-extract_uppercase("hello WORLD!") => ["WORLD"]
-
-"""
-Given an empty string
-It returns an empty list
-"""
-extract_uppercase("") => []
-
-"""
-Given a None value
-It throws an error
-"""
-extract_uppercase(None) throws an error
-```
 
 _Encode each example as a test. You can add to the above list as you go._
 
